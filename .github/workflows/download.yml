@@ -1,0 +1,21 @@
+name: Download Google Drive File
+on: [push, workflow_dispatch]
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install gdown
+        run: pip install gdown
+
+      - name: Download File
+        run: gdown 1t3eax5ayQmgqOiEwksTLxXpA50TBXf-C -O downloaded_file.bin
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-drive-file
+          path: downloaded_file.bin
